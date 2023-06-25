@@ -83,74 +83,74 @@ def cli(ctx: click.Context, _):
 class Runtime(RuntimeStub):
   @cli.group(help='App commands', cls=NestedGroup)
   @runtime
-  def app():
+  def app(self):
     pass
 
   @app.command(help='Build an app')
   @runtime
   @click.argument('name')
-  def build(name):
+  def build(self, name):
     click.echo(f"Building app: {name}")
 
   @app.command(help='Test an app')
   @runtime
   @click.argument('name')
-  def test(name):
+  def test(self, name):
     click.echo(f"Testing app: {name}")
 
   @app.group(help='Inspect commands', cls=NestedGroup)
   @runtime
-  def inspect():
+  def inspect(self):
     pass
 
   @inspect.command(help='Get app name')
   @runtime
-  def name():
+  def name(self):
     click.echo("name is app-something")
 
   @inspect.command(help='Get app version')
   @runtime
-  def version():
+  def version(self):
     click.echo("version is x.y.z")
 
   @cli.group(help='Image commands', cls=NestedGroup)
   @runtime
-  def image():
+  def image(self):
     pass
 
   @image.command(help='Build an image')
   @runtime
   @click.argument('name')
-  def build(name):
+  def build(self, name):
     click.echo(f"Building image: {name}")
 
   @image.command(help='Push an image')
   @runtime
   @click.argument('name')
-  def push(name):
+  def push(self, name):
     click.echo(f"Pushing image: {name}")
 
   @cli.group(help='Cluster commands', cls=NestedGroup)
   @runtime
-  def cluster():
+  def cluster(self):
     pass
 
   @cluster.command(help='Load a cluster')
   @runtime
   @click.argument('name')
-  def load(name):
+  def load(self, name):
     click.echo(f"Loading cluster: {name}")
 
   @cluster.command(help='Test a cluster')
   @runtime
   @click.argument('name')
-  def test(name):
+  def test(self, name):
     click.echo(f"Testing cluster: {name}")
 
   @cluster.command(help='Clean a cluster')
   @runtime
   @click.argument('name')
-  def clean(name):
+  def clean(self, name):
     click.echo(f"Cleaning cluster: {name}")
 
 if __name__ == '__main__':
