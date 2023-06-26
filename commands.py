@@ -67,7 +67,9 @@ class NestedGroup(click.Group):
         and command['section'][0] == section_name
       ][0]
       with formatter.section(f"{section_name} commands"):
-        formatter.write_dl(get_help_messages_dfs(section))
+        messages = get_help_messages_dfs(section)
+        if len(messages):
+          formatter.write_dl(messages)
 
 class RuntimeStub:
   # only symbole definition is needed
@@ -152,6 +154,11 @@ class Runtime(RuntimeStub):
   @click.argument('name')
   def clean(self, name):
     click.echo(f"Cleaning cluster: {name}")
+
+  @cli.group(help='Unused commands', cls=NestedGroup)
+  @runtime
+  def unused(self):
+    pass
 
 if __name__ == '__main__':
   cli()
